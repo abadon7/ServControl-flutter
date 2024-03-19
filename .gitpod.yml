@@ -1,6 +1,7 @@
 image:
   file: .gitpod.Dockerfile
 tasks:
+  - before: npm i -g firebase-tool
   - name: Android Appetize info
     # Gitpod is not able to run emulators within a worspace at this stage as
     # Google Kubernetes Engine does not support Nested Virtualization.
@@ -64,6 +65,8 @@ tasks:
         done
       } fi
       flutter run
+      
+   
 
 ports:
   - port: 5900
