@@ -28,8 +28,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "955361731943-kktol7dh3pjht223k9vaohmjj6mj4a72.apps.googleusercontent.com",
+              "client_id": "955361731943-je3hr5gpl1mijsgaa9fol7cq026ume32.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "955361731943-muogv26h3em6mt0517su0tjglg4lk220.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gitpodFlutterQuickstart"
+              }
             }
           ]
         }
@@ -65,8 +72,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "955361731943-kktol7dh3pjht223k9vaohmjj6mj4a72.apps.googleusercontent.com",
+              "client_id": "955361731943-je3hr5gpl1mijsgaa9fol7cq026ume32.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "955361731943-muogv26h3em6mt0517su0tjglg4lk220.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gitpodFlutterQuickstart"
+              }
             }
           ]
         }
@@ -81,6 +95,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "955361731943-e204887cqmcp0913o1odmbea9upec9g3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gitpod_flutter_quickstart",
+            "certificate_hash": "99d9456d1b680993aab1d738322d9f1a95520122"
+          }
+        },
+        {
           "client_id": "955361731943-kktol7dh3pjht223k9vaohmjj6mj4a72.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -94,8 +116,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "955361731943-kktol7dh3pjht223k9vaohmjj6mj4a72.apps.googleusercontent.com",
+              "client_id": "955361731943-je3hr5gpl1mijsgaa9fol7cq026ume32.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "955361731943-muogv26h3em6mt0517su0tjglg4lk220.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gitpodFlutterQuickstart"
+              }
             }
           ]
         }
