@@ -1,8 +1,18 @@
+import 'dart:convert';
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'firebase_options.dart';
+
+class User {
+  final String? name;
+  final String? email;
+
+  const User(this.name, this.email);
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +23,8 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,9 +42,16 @@ class SignInPage extends StatelessWidget {
     try {
       UserCredential? user = await signInWithGoogle();
       if (user.user != null) {
+        final User currentUser = User(user.user!.displayName, user.user!.email);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Signed in with Google: ${user.user!.displayName}'),
+          ),
+        );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DataScreen(user: currentUser),
           ),
         );
       }
@@ -55,7 +74,7 @@ class SignInPage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () => _signInWithGoogle(context),
-          child: Text('Sign in with Google'),
+          child: const Text('Sign in with Google'),
         ),
       ),
     );
@@ -111,4 +130,46 @@ Future<UserCredential> signInWithGoogle() async {
   }
 
   // Once signed in, return the UserCredential
+}
+
+class DataScreen extends StatelessWidget {
+  // In the constructor, require a Todo.
+  const DataScreen({super.key, required this.user});
+
+  Future<void> readData() async {
+    print("READING DATABASE");
+    DatabaseReference databaseReference =
+        FirebaseDatabase.instance.ref().child('users');
+
+    databaseReference.onValue.listen((event) {
+      DataSnapshot dataSnapshot = event.snapshot;
+      print(dataSnapshot.value);
+      Map<String, dynamic> data = jsonDecode(jsonEncode(dataSnapshot.value));
+      //Map<String, dynamic> values = dataSnapshot.value as Map<String, dynamic>;
+      data.forEach((key, values) {
+        print('Key: $key');
+        print('Name: ${values['name']}');
+        print('Email: ${values['email']}');
+        print('Age: ${values['age']}');
+      });
+    });
+  }
+
+  // Declare a field that holds the Todo.
+  final User user;
+
+  @override
+  Widget build(BuildContext context) {
+    // Use the Todo to create the UI.
+    readData();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(user.name!),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Text(user.email!),
+      ),
+    );
+  }
 }
